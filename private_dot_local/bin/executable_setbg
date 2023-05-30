@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# This script does the following:
+# Run by itself, set the wallpaper (at X start).
+# If given a file, set that as the new wallpaper.
+# If given a directory, choose random file in it.
+# If wal is installed, also generates a colorscheme.
+
+# Location of link to wallpaper link.
+bgloc="${XDG_DATA_HOME:-$HOME/.local/share/}/bg"
+
+[ -f "$1" ] && ln -sf "$(readlink -f "$1")" "$bgloc" && notify-send -i "$bgloc" "Changing wallpaper..."
+
+[ -d "$1" ] && ln -sf "$(find "$(readlink -f "$1")" -iregex '.*.\(jpg\|jpeg\|png\|gif\)' -type f | shuf -n 1)" "$bgloc" && notify-send -i "$bgloc" "Random Wallpaper chosen."
+
+wal -n -i "$(readlink -f "$bgloc")" -o "$HOME/.config}/wal/postrun" > /dev/null 2>&1
+
+gsettings set org.gnome.desktop.background picture-uri-dark "file://$(readlink -f "$bgloc")"
+
+# External script provided to `wal` isn't being executed due to some bugs upstream
+#source "${HOME}/.cache/wal/colors.sh"
+
+#mkdir -p "${HOME}/.config/dunst"
+mkdir -p "${HOME}/.config/zathura"
+mkdir -p "${HOME}/.config/bat/themes/Pywal"
+ln -sf "${HOME}/.cache/wal/zathurarc" "${HOME}/.config/zathura/zathurarc"
+ln -sf "${HOME}/.cache/wal/colors.tmTheme" "${HOME}/.config/bat/themes/Pywal/Pywal.tmTheme"
+
+xrdb -merge ~/.cache/wal/colors.Xresources &

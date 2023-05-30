@@ -1,0 +1,101 @@
+# Fix dotnet apps
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+
+# Default programs:
+export EDITOR="nvim"
+export TERMINAL="wezterm"
+export BROWSER="brave"
+export READER="zathura"
+export FILE_EXPLORER="lf"
+
+# ~/ Clean-up:
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_PICTURES_DIR="$HOME/Pictures"
+export XDG_VIDEOS_DIR="$HOME/Videos"
+export XDG_DOCUMENTS_DIR="$HOME/Documents"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+export NNN_FIFO=/tmp/nnn.fifo
+export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+export STARSHIP_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml"
+export STARSHIP_CACHE="$XDG_CACHE_HOME"/starship
+export NOTMUCH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/notmuch-config"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+export LESSHISTFILE="-"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME /.config}/wget/wgetrc"
+export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/inputrc"
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+export NVM_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nvm"
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/npm/npmrc"
+export GNUPGHOME="${XDG_DATA_HOME:-$HOME/.local/share}/gnupg"
+export KODI_DATA="${XDG_DATA_HOME:-$HOME/.local/share}/kodi"
+export VSCODE_PORTABLE="${XDG_DATA_HOME:-$HOME/.local/share}/vscode"
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
+export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java -Dsun.java2d.uiScale=2.0"
+export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
+export GOMODCACHE="$XDG_CACHE_HOME"/go/mod
+export GRADLE_USER_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/gradle"
+export ANSIBLE_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/ansible/ansible.cfg"
+export PYLINTHOME="${XDG_CACHE_HOME:-$HOME/.cache}/pylint"
+export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/config
+#export DISCORD_USER_DATA_DIR="${XDG_DATA_HOME}"
+export FFMPEG_DATADIR="$XDG_CONFIG_HOME"/ffmpeg
+export MYSQL_HISTFILE="$XDG_DATA_HOME"/mysql_history
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
+export VAGRANT_HOME="$XDG_DATA_HOME"/vagrant
+export VAGRANT_ALIAS_FILE="$XDG_DATA_HOME"/vagrant/aliases
+export VSCODE_PORTABLE="$XDG_DATA_HOME"/vscode
+export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
+export _Z_DATA="$XDG_DATA_HOME/z"
+export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
+export PYTHONUSERBASE=$XDG_DATA_HOME/python
+
+# Some programs don't use env variable nor respect XDG rules by default.
+alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
+alias startx='startx "$XDG_CONFIG_HOME/X11/xinitrc"'
+
+# Other program settings:
+export LESS="-R"
+export LESS_TERMCAP_mb=$'\e[6m'         # begin blinking
+export LESS_TERMCAP_md=$'\e[34m'        # begin bold
+export LESS_TERMCAP_us=$'\e[4;32m'      # begin underline
+export LESS_TERMCAP_so=$'\e[1;33;41m'   # begin standout-mode - info box
+export LESS_TERMCAP_me=$'\e[m'          # end mode
+export LESS_TERMCAP_ue=$'\e[m'          # end underline
+export LESS_TERMCAP_se=$'\e[m'          # end standout-mode
+export QT_STYLE_OVERRIDE="gtk2"		# Have QT use gtk2 theme.
+export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
+export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications
+export BAT_THEME="base16"
+export NNN_PLUG='f:finder;o:fzopen;e:-!sudo -E vim $nnn*;x:!chmod +x $nnn;p:preview-tui;v:imgview'
+export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# set PATH so it includes programs installed by using cargo
+if [ -d "$XDG_DATA_HOME/cargo/bin" ] ; then
+    PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
+fi
+
+# set PATH so it includes programs installed by using go
+if [ -d "/usr/local/go/bin" ] ; then
+    PATH="/usr/local/go/bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/share/python/bin" ] ; then
+    PATH="$HOME/.local/share/python/bin:$PATH"
+fi
+
+. "/home/mysy/.local/share/cargo/env"
+
