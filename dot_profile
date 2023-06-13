@@ -57,6 +57,8 @@ export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
 export _Z_DATA="$XDG_DATA_HOME/z"
 export PYTHONPYCACHEPREFIX=$XDG_CACHE_HOME/python
 export PYTHONUSERBASE=$XDG_DATA_HOME/python
+export FLYCTL_INSTALL=$XDG_DATA_HOME/fly
+export DOTNET_ROOT=/usr/share/dotnet
 
 # Some programs don't use env variable nor respect XDG rules by default.
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
@@ -100,6 +102,11 @@ fi
 # set PATH so it includes programs installed by python pip
 if [ -d "$XDG_DATA_HOME/python/bin" ] ; then
     PATH="$XDG_DATA_HOME/python/bin:$PATH"
+fi
+
+# set PATH so it includes fly.io
+if [ -d "$FLYCTL_INSTALL/bin" ] ; then
+  PATH="$FLYCTL_INSTALL/bin:$PATH"
 fi
 
 . "$XDG_DATA_HOME/cargo/env"

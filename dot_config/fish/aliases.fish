@@ -16,14 +16,14 @@ alias xclip="xclip -selection clipboard"
 
 # Some programs don't use env variable nor respect XDG rules by default.
 alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/config"
-alias startx="startx $XDG_CONFIG_HOME/X11/xinitrc" 
+alias startx="startx $XDG_CONFIG_HOME/X11/xinitrc"
 
 # Colorize commands when possible.
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 #alias ls="ls -h --color --group-directories-first" 
-alias lsd="ls -h --group-directories-first" 
-alias ll="ls -lA" 
+alias lsd="ls -h --group-directories-first"
+alias ll="ls -lA"
 
 # These common commands are just too long! Abbreviate them.
 alias dn="sudo shutdown -h now"
@@ -32,4 +32,3 @@ alias v="nvim"
 alias g="git"
 alias o="xdg-open"
 alias z="zathura"
-
