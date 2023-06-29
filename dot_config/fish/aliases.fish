@@ -22,8 +22,8 @@ alias startx="startx $XDG_CONFIG_HOME/X11/xinitrc"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 #alias ls="ls -h --color --group-directories-first" 
-alias lsd="ls -h --group-directories-first"
-alias ll="ls -lA"
+alias lsd="lsd -h --group-directories-first"
+alias ll="lsd -lA"
 
 # These common commands are just too long! Abbreviate them.
 alias dn="sudo shutdown -h now"
