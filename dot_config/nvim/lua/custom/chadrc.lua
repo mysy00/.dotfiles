@@ -4,12 +4,9 @@ local M = {}
 -- Path to overriding theme and highlights files
 local highlights = require "custom.highlights"
 
-vim.opt.relativenumber = true
-vim.opt.clipboard = ""
-
 M.ui = {
-  theme = "dark_horizon",
-  theme_toggle = { "dark_horizon", "one_light" },
+  theme = "oxocarbon",
+  theme_toggle = { "oxocarbon", "one_light" },
 
   hl_override = highlights.override,
   hl_add = highlights.add,
