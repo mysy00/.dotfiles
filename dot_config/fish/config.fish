@@ -1,8 +1,15 @@
 fish_add_path $XDG_DATA_HOME/cargo/bin
 fish_add_path $HOME/.local/bin
 
-# Import additional files
-source $XDG_CONFIG_HOME/fish/aliases.fish
+set -gx XDG_CACHE_HOME "$HOME/.cache"
+set -gx XDG_CONFIG_HOME "$HOME/.config"
+set -gx XDG_DATA_HOME "$HOME/.local/share"
+set -gx XDG_STATE_HOME "$HOME/.local/state"
+
+set -gx EDITOR nvim
+
+set -gx BAT_THEME "Catppuccin Mocha"
+set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 # Volta
 set -gx VOLTA_HOME "$XDG_CACHE_HOME/.volta"
@@ -33,3 +40,7 @@ if status is-interactive
     end
 
 end
+
+# Import additional files
+source $XDG_CONFIG_HOME/fish/aliases.fish
+

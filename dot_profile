@@ -4,7 +4,7 @@ export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="wezterm"
-export BROWSER="brave"
+export BROWSER="com.brave.Browser"
 export READER="zathura"
 export FILE_EXPLORER="lf"
 
@@ -76,7 +76,6 @@ export LESS_TERMCAP_se=$'\e[m'          # end standout-mode
 export QT_STYLE_OVERRIDE="gtk2"		# Have QT use gtk2 theme.
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications
-export BAT_THEME="base16"
 export NNN_PLUG='f:finder;o:fzopen;e:-!sudo -E vim $nnn*;x:!chmod +x $nnn;p:preview-tui;v:imgview'
 export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"
 
@@ -88,6 +87,7 @@ fi
 # set PATH so it includes programs installed by using cargo
 if [ -d "$XDG_DATA_HOME/cargo/bin" ] ; then
     PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
+    . "$XDG_DATA_HOME/cargo/env"
 fi
 
 # set PATH so it includes programs installed by using go
@@ -109,5 +109,5 @@ if [ -d "$FLYCTL_INSTALL/bin" ] ; then
   PATH="$FLYCTL_INSTALL/bin:$PATH"
 fi
 
-. "$XDG_DATA_HOME/cargo/env"
 
+. "/home/mysy/.local/share/cargo/env"

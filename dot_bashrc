@@ -109,3 +109,8 @@ fi
 
 export GPG_TTY=$(tty)
 
+# Load user profile fileq
+if [ -f ~/.profile ]; then
+  . ~/.profile
+fi
+. "/home/mysy/.local/share/cargo/env"

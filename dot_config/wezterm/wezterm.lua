@@ -6,7 +6,11 @@ wezterm.on('update-right-status', function(window)
 end)
 
 return {
-  font = wezterm.font 'Hack Nerd Font',
+  -- font = wezterm.font 'Hack Nerd Font',
+  font = wezterm.font_with_fallback {
+    --'JetBrainsMono Nerd Font',
+    'Fira Code Nerd Font',
+  },
   --font = wezterm.font 'SauceCodePro Nerd Font',
   default_prog = { '/usr/bin/fish' },
   color_scheme = "IR_Black",
@@ -40,6 +44,6 @@ return {
     -- Copy/Paste
     { key="c",           mods = "CTRL|SHIFT",   action = act.CopyTo 'Clipboard'},
     { key="v",           mods = "CTRL|SHIFT",   action = act.PasteFrom 'Clipboard'},
-
+    { key = 'X',         mods = 'CTRL|SHIFT',         action = wezterm.action.ActivateCopyMode },
   },
 }
