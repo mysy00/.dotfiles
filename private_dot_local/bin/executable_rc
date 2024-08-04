@@ -1,0 +1,33 @@
+#!/bin/sh
+
+getdim() { xrandr | grep -oP '(?<=current ).*(?=,)' | tr -d ' ' ;}
+
+killrecording() {
+  recpid="$(cat /tmp/recordingpid)"
+    kill -15 "$recpid"
+    rm -f /tmp/recordingpid
+}
+
+screencast() { \
+  ffmpeg -y \
+    -f x11grab \
+    -framerate 30 \
+    -s "$(getdim)" \
+    -i "$DISPLAY" \
+    -r 24 \
+    -use_wallclock_as_timestamps 1 \
+    -f alsa -thread_queue_size 1024 -i default \
+    -c:v h264 \
+    -crf 0 -preset ultrafast -c:a aac \
+    "$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
+    echo $! > /tmp/recordingpid
+}
+
+case "$1" in
+  stop)
+    killrecording
+    ;;
+  *)
+    screencast
+    ;;
+esac
